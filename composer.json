@@ -15,7 +15,7 @@
         "authentication",
         "drupal"
     ],
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "require": {
         "league/oauth2-client": "~1.0"
     },
