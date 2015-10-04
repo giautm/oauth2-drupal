@@ -71,14 +71,12 @@ class Drupal extends AbstractProvider
 
     protected function checkResponse(ResponseInterface $response, $data)
     {
-        if (!empty($data['error'])) {
-            $code = 0;
-            $error = $data['error'];
-            if (is_array($error)) {
-                $code = $error['code'];
-                $error = $error['message'];
-            }
-            throw new IdentityProviderException($error, $code, $data);
+        if (isset($data['error'])) {
+            throw new IdentityProviderException(
+                $data['error_description'] ?: $response->getReasonPhrase(),
+                $response->getStatusCode(),
+                $response
+            );
         }
     }
 
