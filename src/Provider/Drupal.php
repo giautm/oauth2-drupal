@@ -20,26 +20,26 @@ class Drupal extends AbstractProvider
 {
     use BearerAuthorizationTrait;
     const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'uid';
-    private $endpoint;
+    protected $baseUrl;
 
-    public function getEndpoint()
+    public function getBaseUrl()
     {
-        return $this->endpoint;
+        return $this->baseUrl;
     }
 
     public function getBaseAuthorizationUrl()
     {
-        return $this->getEndpoint() . '/oauth2/authorize';
+        return $this->getBaseUrl() . '/oauth2/authorize';
     }
 
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->getEndpoint() . '/oauth2/token';
+        return $this->getBaseUrl() . '/oauth2/token';
     }
 
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->getEndpoint() . '/oauth2/user/profile';
+        return $this->getBaseUrl() . '/oauth2/user/profile';
     }
 
     /**
